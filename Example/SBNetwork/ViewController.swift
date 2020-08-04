@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import SBNetwork
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        SBNetwork().log(with: "HELLO")
     }
 
     override func didReceiveMemoryWarning() {

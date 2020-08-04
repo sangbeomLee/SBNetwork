@@ -1,0 +1,6 @@
+framework module Pods_SBNetwork_Example {
+  umbrella header "Pods-SBNetwork_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

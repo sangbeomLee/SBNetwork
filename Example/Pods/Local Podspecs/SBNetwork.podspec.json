@@ -1,0 +1,22 @@
+{
+  "name": "SBNetwork",
+  "version": "0.1.0",
+  "summary": "A short description of SBNetwork.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/sangbeomLee/SBNetwork",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "sangbeomLee": "wing951@naver.com"
+  },
+  "source": {
+    "git": "https://github.com/sangbeomLee/SBNetwork.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SBNetwork/Classes/**/*"
+}
