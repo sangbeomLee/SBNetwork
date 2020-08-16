@@ -15,14 +15,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let url = URL(string: "https://image.blockbusterbd.net/00416_main_image_04072019225805.png")!
-        SBImageManager.shared.fetch(url) { (result) in
-            switch result {
-            case .success(let image):
-                self.testImageView.image = image
-            case .failure(let error):
-                print(error)
-            }
-        }
+        
+        testImageView.getImage(url: url)
     }
 
     override func didReceiveMemoryWarning() {

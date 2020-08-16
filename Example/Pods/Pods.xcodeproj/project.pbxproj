@@ -34,6 +34,7 @@
 		D04AAC8B22E4A4DC4F39891C4E52F251 /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = E354F8FD537351F26F7949B4EBFA5101 /* UIImage+Diff.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		D32E1B8724E691F600A0913E /* SBImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E1B8624E691F600A0913E /* SBImageManager.swift */; };
 		D32E1B8924E6921200A0913E /* SBImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E1B8824E6921200A0913E /* SBImageType.swift */; };
+		D32E1B8B24E697C700A0913E /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E1B8A24E697C700A0913E /* UIImageView+Extension.swift */; };
 		E0B8D095C732352C854D365B9E5B993D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAA89EEF1039078430D7A886477E365 /* UIKit.framework */; };
 		E47BC4EA676A65222B492C718EB2B20A /* Pods-SBNetwork_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A46FEFE673CD198EB9F8F2B52BFB59C8 /* Pods-SBNetwork_Example-dummy.m */; };
 		E8AC509D18EBF21B1FEA909652A01108 /* FBSnapshotTestCasePlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81AC7DF4855803A0FA70985F8A99 /* FBSnapshotTestCasePlatform.m */; };
@@ -112,6 +113,7 @@
 		D3067EAFD5B0A06885968D137840DB70 /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
 		D32E1B8624E691F600A0913E /* SBImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBImageManager.swift; sourceTree = "<group>"; };
 		D32E1B8824E6921200A0913E /* SBImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBImageType.swift; sourceTree = "<group>"; };
+		D32E1B8A24E697C700A0913E /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		D42DC8F6E554B007A47A1E3AA944CB2B /* Pods-SBNetwork_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SBNetwork_Example.modulemap"; sourceTree = "<group>"; };
 		DB52200737D1164BD480EF5EECCF04BC /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		DE35F81C954881204729C569018D98C0 /* FBSnapshotTestController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestController.m; path = FBSnapshotTestCase/FBSnapshotTestController.m; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 			children = (
 				D32E1B8624E691F600A0913E /* SBImageManager.swift */,
 				D32E1B8824E6921200A0913E /* SBImageType.swift */,
+				D32E1B8A24E697C700A0913E /* UIImageView+Extension.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 			files = (
 				D32E1B8924E6921200A0913E /* SBImageType.swift in Sources */,
 				D32E1B8724E691F600A0913E /* SBImageManager.swift in Sources */,
+				D32E1B8B24E697C700A0913E /* UIImageView+Extension.swift in Sources */,
 				1CF84767C1611A92638DE4C8AA7169FA /* SBNetwork-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
