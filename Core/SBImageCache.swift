@@ -13,19 +13,27 @@ enum CacheError: Error {
     case outOfMemory
     case outOfDisk
     case pathError
+    case removeError
 }
 
 public class SBImageCache{
     let fileManager: FileManager
     // 내부 캐시
     let cacheStorage = NSCache<NSString, UIImage>()
+    var currentDate = Date()
     //var componentsByName = Dictionary<String, String>()
-    public let directory = "Images"
+    public let directory = Constant.CACHE_DIRACTORY
+    // 기본 10일이다.
+    public let minimumDay: Double
     
-    init (fileManager: FileManager) {
+    init (fileManager: FileManager, minimumDay: Double = Constant.CACHE_MINIMUMDAY) {
         self.fileManager = fileManager
-        // fileManager에 저장되어있는 이름을 옮겨야한다. componentsByName에
-        // dicrectory가 만들어지지 않았다면 만든다.
+        self.minimumDay = minimumDay
+        makeDirectory()
+        cleanUp()
+    }
+    
+    fileprivate func makeDirectory() {
         guard let diskPath = getDiskPath() else {
             fatalError("disk Path Error")
         }
@@ -36,7 +44,7 @@ public class SBImageCache{
     }
     
     // disk path를 구하는 함수
-    func getDiskPath() -> URL? {
+    fileprivate func getDiskPath() -> URL? {
         let diskPaths = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
         guard let diskPath = diskPaths.first else {
             return nil
@@ -46,7 +54,7 @@ public class SBImageCache{
     }
     
     // image path를 구하는 함수
-    func getImagePath(url: URL) -> String? {
+    fileprivate func getImagePath(url: URL) -> String? {
         guard let diskPath = getDiskPath() else {
             return nil
         }
@@ -54,6 +62,44 @@ public class SBImageCache{
         return diskPath.appendingPathComponent(url.lastPathComponent).path
     }
     
+    fileprivate func cleanUp() {
+        // 이전 날짜
+        let minimumDate = Date().addingTimeInterval(-minimumDay*24*60*60)
+        // diskPath를 찾는다.
+        guard let diskPath = getDiskPath()?.path else {
+            print(CacheError.pathError)
+            return
+        }
+
+        do {
+            // fileManager의 currentDirectory를 바꾼다. -> 캐시디렉토리로
+            if fileManager.changeCurrentDirectoryPath(diskPath) {
+                // 파일들을 하나씩 가져온다.
+                for file in try fileManager.contentsOfDirectory(atPath: ".") {
+                    // 저장 시간 정보를 가져온다.
+                    if let creationDate = try fileManager.attributesOfItem(atPath: file)[FileAttributeKey.creationDate] as? Date {
+                        // 만든날짜가 내가 정한 날짜보다 작으면 지운다.
+                        if creationDate < minimumDate {
+                            try fileManager.removeItem(atPath: file)
+                            print("remove: \(file)")
+                        }
+                    }
+                }
+            }
+        }
+        catch {
+            print(CacheError.removeError)
+        }
+    }
+    private func isDayOver() -> Bool {
+        let baseDate = Date().addingTimeInterval(-24*60*60)
+        if currentDate < baseDate {
+            currentDate = Date()
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
 // url-key : name
@@ -61,6 +107,7 @@ public class SBImageCache{
 
 extension SBImageCache: SBImageCacheType {
     public func getImage(for url: URL, location: CacheLocation, completion: ((CacheResult) -> Void)?) {
+        if isDayOver() { cleanUp() }
         let imageName = url.lastPathComponent
        
         switch location {
@@ -89,6 +136,7 @@ extension SBImageCache: SBImageCacheType {
     }
     
     public func storeImage(_ image: UIImage?, for url: URL, location: CacheLocation) {
+        if isDayOver() { cleanUp() }
         // url의 마지막 이름을 이미지 이름으로 저장하자.
         let imageName = url.lastPathComponent
         
@@ -100,6 +148,7 @@ extension SBImageCache: SBImageCacheType {
                 cacheStorage.removeObject(forKey: imageName as NSString)
             }
         case .disk:
+            // 일정 시간이 지나면 자동으로 지우게 해야한다.
             guard let imagePathStr = getImagePath(url: url) else {
                 return
             }

@@ -14,7 +14,7 @@ enum SBImageError: Error {
 public class SBImageManager {
     public static let shared = SBImageManager(
         downloader: SBImageDownloader(session: URLSession.shared),
-        cache: SBImageCache(fileManager: FileManager.default)
+        cache: SBImageCache(fileManager: FileManager.default, minimumDay: 7.0)
     )
     
     public var downloader: SBImageDownloader

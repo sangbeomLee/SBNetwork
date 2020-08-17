@@ -18,6 +18,7 @@ public enum CacheLocation {
 public protocol SBImageCacheType {
     typealias CacheResult = Result<UIImage, Error>
     var directory: String { get }
+    var minimumDay: Double { get }
     
     // 캐시에 저장된 이미지 가져온다.
     func getImage(for url: URL, location: CacheLocation, completion: ((CacheResult) -> Void)?)
