@@ -7,14 +7,4 @@
 
 import Foundation
 
-extension Date {
-    static func toUniqueName() -> String{
-        let dateFormatter = DateFormatter()
-        guard let uuid = UUID().uuidString.split(separator: "-").first else {
-            return UUID().uuidString
-        }
-        dateFormatter.dateFormat = "yyyyMMdd"
-        
-        return dateFormatter.string(from: Date()) + "_" + uuid
-    }
-}
+

@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        testImageView.setImage(url: url)
+        testImageView.setImage(url: url, indicator: true)
     }
 
     override func didReceiveMemoryWarning() {
