@@ -8,39 +8,64 @@
 import Foundation
 
 enum SBImageError: Error {
-    case dataError
-    case responseError
-    case fetchError
+    case downloadError
 }
 
-public class SBImageManager: SBImageType {
-    public static let shared = SBImageManager(downloader: URLSession.shared)
+public class SBImageManager {
+    public static let shared = SBImageManager(
+        downloader: SBImageDownloader(session: URLSession.shared),
+        cache: SBImageCache(fileManager: FileManager.default)
+    )
     
-    public var downloader: URLSession
+    public var downloader: SBImageDownloader
+    public var cache: SBImageCache
     
-    init(downloader: URLSession) {
+    init(downloader: SBImageDownloader, cache: SBImageCache) {
         self.downloader = downloader
+        self.cache = cache
+    }
+    
+    public func checkCacheImage(url: URL) -> UIImage? {
+        var image: UIImage?
+        // getImage from memory
+        cache.getImage(for: url, location: .memory) { (result) in
+            switch result {
+            case .success(let resultImage):
+                image = resultImage
+            case .failure(let error): // 메모리에 없다. -> 디스크 체크 -> 디스크에 없다. -> 다운로드
+                print(error)
+                self.cache.getImage(for: url, location: .disk) { (result) in
+                    switch result {
+                    case .success(let resultImage):
+                        image = resultImage
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            }
+        }
+        return image
     }
 }
 
-extension SBImageManager {
+extension SBImageManager: SBImageType {
     public func fetch(_ url: URL, completion:@escaping (FetchResult) -> ()) {
-        self.downloader.dataTask(with: url) { (data, response, error) in
-            guard error == nil else{
-                completion(FetchResult.failure(SBImageError.fetchError))
-                return
+        // 캐시에 이미지가 있으면 그대로 반환
+        if let image = checkCacheImage(url: url) {
+            completion(FetchResult.success(image))
+        } else {
+            // 네트워크 통신 다운로드
+            self.downloader.downloadImage(url: url) { result in
+                switch result {
+                case .success(let image):
+                    // 다운로드가 다 되면 메모리, 디스크에 저장한다.
+                    self.cache.storeImage(image, for: url, location: .memory)
+                    self.cache.storeImage(image, for: url, location: .disk)
+                    completion(FetchResult.success(image))
+                case .failure(_):
+                    completion(FetchResult.failure(SBImageError.downloadError))
+                }
             }
-            guard let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) else {
-                completion(FetchResult.failure(SBImageError.responseError))
-                return
-            }
-            guard let data = data, let image = UIImage(data: data) else {
-                completion(FetchResult.failure(SBImageError.dataError))
-                return
-            }
-            DispatchQueue.main.async {
-                completion(FetchResult.success(image))
-            }
-        }.resume()
+        }
     }
 }

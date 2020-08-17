@@ -10,7 +10,9 @@ import Foundation
 public protocol SBImageType {
     typealias FetchResult = Result<UIImage, Error>
     
-    var downloader: URLSession { get }
+    var downloader: SBImageDownloader { get }
+    
+    var cache: SBImageCache { get }
     
     func fetch(_ url: URL, completion:@escaping (FetchResult) -> ())
 }

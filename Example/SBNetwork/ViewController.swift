@@ -11,18 +11,20 @@ import SBNetwork
 
 class ViewController: UIViewController {
     @IBOutlet weak var testImageView: UIImageView!
+    let url = URL(string: "https://image.blockbusterbd.net/00416_main_image_04072019225805.png")!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = URL(string: "https://image.blockbusterbd.net/00416_main_image_04072019225805.png")!
-        
-        testImageView.getImage(url: url)
+        testImageView.setImage(url: url)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    @IBAction func refreshButtonDidTapped(_ sender: UIButton) {
+        testImageView.setImage(url: url)
+    }
+    
 }
 

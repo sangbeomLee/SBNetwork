@@ -8,13 +8,11 @@
 import UIKit
 
 extension UIImageView {
-    public func getImage(url: URL) {
+    public func setImage(url: URL) {
         SBImageManager.shared.fetch(url) { (result) in
             switch result {
             case .success(let image):
-                DispatchQueue.main.async {
-                    self.image = image
-                }
+                self.image = image
             case .failure(let error):
                 print("UIImageView_getImage_error : \(error)")
             }
