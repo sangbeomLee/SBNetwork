@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '12.0'
 
-  s.source_files = 'SBNetwork/Classes/Core/**/*'
+  s.source_files = 'SBNetwork/Classes/**/*'
   
   # s.resource_bundles = {
   #   'SBNetwork' => ['SBNetwork/Assets/*.png']
