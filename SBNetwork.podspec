@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SBNetwork'
-  s.version          = '0.1.1'
+  s.version          = '0.2.0'
   s.summary          = 'A short description of SBNetwork.'
 
 # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '12.0'
 
-  s.source_files = 'SBNetwork/Classes/**/*'
+  s.source_files = 'SBNetwork/Classes/Core/**/*'
   
   # s.resource_bundles = {
   #   'SBNetwork' => ['SBNetwork/Assets/*.png']
