@@ -10,7 +10,7 @@ import Foundation
 public protocol SBImageType {
     typealias FetchResult = Result<UIImage, Error>
     
-    var downloader: SBImageDownloader { get }
+    var downloader: SBDownloader { get }
     
     var cache: SBImageCache { get }
     

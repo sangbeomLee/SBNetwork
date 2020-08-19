@@ -13,14 +13,14 @@ enum SBImageError: Error {
 
 public class SBImageManager {
     public static let shared = SBImageManager(
-        downloader: SBImageDownloader(session: URLSession.shared),
+        downloader: SBDownloader(session: URLSession.shared),
         cache: SBImageCache(fileManager: FileManager.default, minimumDay: 7.0)
     )
     
-    public var downloader: SBImageDownloader
+    public var downloader: SBDownloader
     public var cache: SBImageCache
     
-    init(downloader: SBImageDownloader, cache: SBImageCache) {
+    init(downloader: SBDownloader, cache: SBImageCache) {
         self.downloader = downloader
         self.cache = cache
     }
