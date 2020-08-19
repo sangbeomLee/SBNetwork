@@ -13,9 +13,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var testImageView: UIImageView!
     let url = URL(string: "https://image.blockbusterbd.net/00416_main_image_04072019225805.png")!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        testImageView.backgroundColor = .black
         testImageView.setImage(url: url, indicator: true)
+        
     }
 
     override func didReceiveMemoryWarning() {
