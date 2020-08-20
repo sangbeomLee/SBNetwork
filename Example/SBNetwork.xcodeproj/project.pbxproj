@@ -13,6 +13,9 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		D32E1BD424ED333200A0913E /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E1BD324ED333200A0913E /* WeatherData.swift */; };
+		D32E1BD624ED334700A0913E /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E1BD524ED334700A0913E /* WeatherModel.swift */; };
+		D32E1BD824ED339C00A0913E /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32E1BD724ED339C00A0913E /* Api.swift */; };
 		DA4960D39CF5342C243577EC /* Pods_SBNetwork_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB91971DDAA2C2BF7E992D5 /* Pods_SBNetwork_Tests.framework */; };
 		DDD753F95636382ED212C589 /* Pods_SBNetwork_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E91D7DD61E6457CD0811ADD3 /* Pods_SBNetwork_Example.framework */; };
 /* End PBXBuildFile section */
@@ -45,6 +48,9 @@
 		AAB91971DDAA2C2BF7E992D5 /* Pods_SBNetwork_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SBNetwork_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B65929B4B24715090E343804 /* Pods-SBNetwork_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBNetwork_Example.debug.xcconfig"; path = "Target Support Files/Pods-SBNetwork_Example/Pods-SBNetwork_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		C44856540B33B40CE910D451 /* Pods-SBNetwork_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBNetwork_Tests.release.xcconfig"; path = "Target Support Files/Pods-SBNetwork_Tests/Pods-SBNetwork_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		D32E1BD324ED333200A0913E /* WeatherData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		D32E1BD524ED334700A0913E /* WeatherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		D32E1BD724ED339C00A0913E /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		E8529741B20D8B5D945C4F32 /* Pods-SBNetwork_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBNetwork_Tests.debug.xcconfig"; path = "Target Support Files/Pods-SBNetwork_Tests/Pods-SBNetwork_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		E91D7DD61E6457CD0811ADD3 /* Pods_SBNetwork_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SBNetwork_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -104,6 +110,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				D32E1BD224ED331900A0913E /* JsonTest */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -146,6 +153,16 @@
 				2612C6031225D606BD7FB723 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		D32E1BD224ED331900A0913E /* JsonTest */ = {
+			isa = PBXGroup;
+			children = (
+				D32E1BD324ED333200A0913E /* WeatherData.swift */,
+				D32E1BD524ED334700A0913E /* WeatherModel.swift */,
+				D32E1BD724ED339C00A0913E /* Api.swift */,
+			);
+			name = JsonTest;
 			sourceTree = "<group>";
 		};
 		E931DA7E27EBD5FE09A32CDD /* Pods */ = {
@@ -350,6 +367,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				D32E1BD424ED333200A0913E /* WeatherData.swift in Sources */,
+				D32E1BD624ED334700A0913E /* WeatherModel.swift in Sources */,
+				D32E1BD824ED339C00A0913E /* Api.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

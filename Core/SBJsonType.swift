@@ -8,10 +8,11 @@
 import Foundation
 
 public protocol SBJsonType {
-    typealias FetchResult<M: SBModel> = Result<M, Error>
+    typealias FetchResult<M> = Result<M, Error>
+    
     
     var downloader: SBDownloader { get }
     
-    func fetch<T:Decodable, M: SBModel>(_ url: URL, parseJSON:@escaping ((T) -> M?), completion:@escaping (FetchResult<M>?) -> ())
+    func fetch<T:Decodable, M>(_ url: URL, parseJSON:@escaping (T) -> M?, completion:@escaping (FetchResult<M>) -> ())
     func decodeJSON<T: Decodable>(with data: Data) -> T?
 }

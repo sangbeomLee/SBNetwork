@@ -12,13 +12,22 @@ import SBNetwork
 class ViewController: UIViewController {
     @IBOutlet weak var testImageView: UIImageView!
     let url = URL(string: "https://image.blockbusterbd.net/00416_main_image_04072019225805.png")!
+    let jsonURL = URL(string: Api.url)!
     
-    
+    // Networking model, real model 두개를 만든다.
     override func viewDidLoad() {
         super.viewDidLoad()
         testImageView.backgroundColor = .black
         testImageView.setImage(url: url, indicator: true)
         
+        SBJsonManager.shared.fetch(jsonURL, parseJSON: WeatherModel.parse(networkModel:)) { (result) in
+            switch result {
+            case .success(let modelData):
+                print(modelData)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

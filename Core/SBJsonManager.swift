@@ -26,7 +26,7 @@ public class SBJsonManager {
 }
 
 extension SBJsonManager: SBJsonType {
-    public func fetch<T, M>(_ url: URL, parseJSON:@escaping  ((T) -> M?), completion: @escaping (FetchResult<M>?) -> ()) where T : Decodable, M : SBModel {
+    public func fetch<T, M>(_ url: URL, parseJSON:@escaping ((T) -> M?), completion: @escaping (FetchResult<M>) -> ()) where T : Decodable {
         self.downloader.downloadJson(url: url) { result in
             switch result {
             case .success(let data):
