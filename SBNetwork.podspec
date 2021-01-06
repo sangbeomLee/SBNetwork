@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SBNetwork'
-  s.version          = '0.2.1'
+  s.version          = '0.3.0'
   s.summary          = 'A short description of SBNetwork.'
   s.swift_versions   = '5.0'
 
