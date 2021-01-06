@@ -7,26 +7,34 @@
 
 import UIKit
 
+private enum Icon {
+    static let LoadFailed = UIImage(named: "loadFailed")
+}
+
 extension UIImageView {
-    public func setImage(url: URL, indicator: Bool = false) {
+    public func setImage(from url: URL, showsIndicator: Bool = false) {
         var indicatorView: SBIndicatorView?
-        if indicator {
-            indicatorView = SBIndicatorView(width: self.frame.width, height: self.frame.height)
-            indicatorView?.startAnimating()
-            self.addSubview(indicatorView!)
+        
+        if showsIndicator {
+            let indicator = SBIndicatorView(width: frame.width, height: frame.height)
+            indicator.startAnimating()
+            addSubview(indicator)
+            indicatorView = indicator
         }
         
-        SBImageManager.shared.fetch(url) { (result) in
-            switch result {
-            case .success(let image):
+        SBImageManager.shared.fetch(url) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let image):
+                    self?.image = image
+                case .failure(let error):
+                    print("UIImageView_getImage_error : \(error)")
+                    self?.image = Icon.LoadFailed
+                }
+                
                 indicatorView?.stopAnimating()
-                self.image = image
-            case .failure(let error):
-                indicatorView?.stopAnimating()
-                print("UIImageView_getImage_error : \(error)")
+                indicatorView?.removeFromSuperview()
             }
-            indicatorView?.removeFromSuperview()
         }
-        
     }
 }

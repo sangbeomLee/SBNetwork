@@ -8,21 +8,22 @@
 import Foundation
 
 public class SBIndicatorView: UIActivityIndicatorView {
-    private func configure() {
-        self.sizeToFit()
-        self.color = .gray
-        self.hidesWhenStopped = true
-    }
-    
     init(width: CGFloat, height: CGFloat, style: UIActivityIndicatorView.Style = .white) {
         super.init(style: style)
-        configure()
-        self.center = CGPoint(x: width/2, y: height/2)
+        
+        setup(centerX: width/2, centerY: height/2)
         self.style = style
     }
     
     required init(coder: NSCoder) {
         super.init(coder: coder)
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setup(centerX: CGFloat, centerY: CGFloat) {
+        sizeToFit()
+        color = .gray
+        hidesWhenStopped = true
+        center = CGPoint(x: centerX, y: centerY)
     }
 }

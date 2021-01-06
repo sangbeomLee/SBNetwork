@@ -7,17 +7,10 @@
 
 import Foundation
 
-public protocol SBImageDownloaderType {
-    typealias DownloadImageResult = Result<UIImage, Error>
+public protocol SBDownloaderType {
+    typealias DownloadedDataResult = Result<Data, Error>
+    
     var session: URLSession { get }
     
-    // downloadFunc
-    func downloadImage(url: URL, completion:@escaping (DownloadImageResult) -> ())
-}
-
-public protocol SBDataDownloaderType {
-    typealias DownloadDataResult = Result<Data, Error>
-    var session: URLSession { get }
-    
-    func downloadJson(url: URL, completion:@escaping (DownloadDataResult) -> ())
+    func downloadData(from url: URL, completion: @escaping (DownloadedDataResult) -> ())
 }
