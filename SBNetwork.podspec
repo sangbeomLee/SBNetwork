@@ -22,10 +22,11 @@ Pod::Spec.new do |s|
 
   s.homepage         = 'https://github.com/sangbeomLee/SBNetwork'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.summary          = "help to handle for image cache"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'sangbeomLee' => 'wing951@naver.com' }
   s.source           = { :git => 'https://github.com/sangbeomLee/SBNetwork.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.description      = "help to handle for image cache"
 
   s.ios.deployment_target = '12.0'
 
